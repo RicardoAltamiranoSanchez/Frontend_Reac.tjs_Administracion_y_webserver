@@ -3,32 +3,56 @@ import React ,{useEffect,useState} from 'react';
 //importamos la libreria para el envio de rutas o los paths
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import Practica from './components/prueba';
-import primeraPagina from './components/primeraPagina';
-import segundaPagina from './components/segundaPagina';
+import PrimeraPagina from './components/primeraPagina';
+import CategoriasPagina from './components/segundaPagina';
+
+import ObtenerProducto from './components/producto';
+
 import Axios from './config/axios';
 
 
 function App() {
   console.log(process.env.REACT_APP_BACKEND_URL);
    const [Usuarios,guardaUsuarios]=useState([]);
-  //useEffect es un funcion que se ejecuta cuando hay cambios en el programa 
+   const [Categorias,guardarCategorias]=useState([]);
+   const [Productos,guardarProductos]=useState([]);
+   //useEffect es un funcion que se ejecuta cuando hay cambios en el programa 
   useEffect(()=>{
      //consultamos la url ya no ponemos el local host por que ya la tenemos en una varible global
   const consultarApi= ()=>{
    
      Axios.get('http://localhost:8080/Api/Usuarios')
     .then(respuesta => {
-   
       guardaUsuarios(respuesta.data);
-    
     })
     .catch(err => console.log(err)) 
+  }
+  //Consultamos en la ruta categoria de nuestra api
+  const ConsultarCategorias=()=>{
+    
+    Axios.get('http://localhost:8080/Api/categorias')
+    .then((response) => 
+    { 
+     
+      guardarCategorias(response.data); 
+    
+    })
+    .catch(err => console.log(err));
 
-  }     
-      consultarApi();
-      
-  },[])
-
+  }
+  const ConsultarProductos=()=>{
+    Axios.get('http://localhost:8080/Api/productos')
+    .then((response) => 
+    
+    guardarProductos(response.data)
+    )
+    .catch(err => console.log(err))
+  }
+  ConsultarProductos();
+  ConsultarCategorias();
+  consultarApi();     
+  },[]);
+ 
   return (
   <Router>
    <Switch>
@@ -41,15 +65,28 @@ function App() {
         />}
 
      />
-     <Route
-     exact path='/primeraPagina'
-     component={primeraPagina}
-     />
-     <Route
-     exact path='/segundaPagina'
-     component={segundaPagina}
 
+     <Route
+     exact path='/CrearUsuario'
+     component={PrimeraPagina}
      />
+     
+     <Route
+     exact path='/Categorias'
+     component={()=> <CategoriasPagina
+     Categorias={Categorias}
+     
+     />}
+     />
+     <Route  
+    exact path='/Productos'
+    component={ ()=> <ObtenerProducto
+    Productos={Productos}
+    
+
+
+    />}
+    />
    </Switch>
 
 

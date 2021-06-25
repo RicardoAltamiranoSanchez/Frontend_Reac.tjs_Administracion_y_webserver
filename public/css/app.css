@@ -7,9 +7,9 @@ html {
 }
 
 body {
-    background: #AA076B; 
-    background: -webkit-linear-gradient(to right, #61045F, #AA076B);  
-    background: linear-gradient(to right, #61045F, #AA076B); 
+    background: #00FA9A; 
+    background: -webkit-linear-gradient(to right, #2E8B57, #90EE90);  
+    background: linear-gradient(to right, #2E8B57, #90EE90); 
     font-size: 1.6rem;
 }
 
@@ -25,7 +25,7 @@ h2 {
 }
 h3 {
     font-family: 'Staatliches', cursive;
-    color:#AA076B;
+    color:#228B22;
     font-size: 2.4rem;
 }
 .btn {
@@ -33,7 +33,7 @@ h3 {
 }
 .fecha-alta {
     font-family: 'Staatliches', cursive;
-    color: #AA076B;
+    color:#66CDAA;
     font-weight: bold;
     font-size: 2rem;
 }
@@ -46,4 +46,8 @@ h3 {
 }
 form {
     border-radius: .3rem;
+}
+form label{
+    font-family: 'Staatliches', cursive;
+    color:#228B22;
 }
