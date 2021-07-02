@@ -32,7 +32,8 @@ return (
         {Usuarios.usuarios.map((u)=>(
       //En react no se utiliza las etiquetas se utiliza otra cosa <a></a>  key es para tener un identificador unico utilizamos el iud de usuarios para eso       
       //debemos importar de react-douter-dom link ya que hace nuestra app mas rapida
-      <a key={u.uid} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
+     
+      <Link to={`/Usuario/${u.uid}`} key={u.uid} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
       <div className="d-flex w-100 justify-content-between mb-4">
       <h3 className="mb-3">{u.nombre}</h3>
       <small class="fecha-alta">
@@ -47,7 +48,7 @@ return (
       <p>{u.description}</p>
       <p>Mas info del usuario</p>
     
-      </a>
+      </Link>
         ))}
 
       </div>

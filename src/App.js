@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Practica from './components/prueba';
 import PrimeraPagina from './components/primeraPagina';
 import CategoriasPagina from './components/segundaPagina';
-import Usuarioinfo from './components/Usuario';
+import UsuarioInfo from './components/Usuario';
 
 import ObtenerProducto from './components/producto';
 
@@ -63,12 +63,11 @@ function App() {
     }, [consulta]);
     //de eciamos en consulata en corchetes que cuando ese cambie este atento y vuelva a ejecutar ese codigo para eso es el
 
-    return ( <
-            Router >
-            <
-            Switch >
-            <
-            Route
+    return (
+        
+        <Router >
+            <Switch >
+            <Route
             //utilizamos route para hacer el link o url de nuestro programas debemos crear los componentes de cada pagina que vamos a llamar
             //Asi se pasa la informacion que estemos consumiendo una api se pasa cuando quieras pasar useState o funcion se debe usar esta sintaxis
             exact path = '/'
@@ -77,55 +76,51 @@ function App() {
                 Usuarios = { Usuarios }
                 />}
 
-                /
-                >
+                />
 
-                <
-                Route
+                <Route
                 exact path = '/CrearUsuario'
                 component = {
                     () => < PrimeraPagina
                     guardarConsulta = { guardarConsulta }
-                    />} /
-                    >
+                    />} />
 
-                    <
-                    Route
+                    <Route
                     exact path = '/Categorias'
                     component = {
                         () => < CategoriasPagina
                         Categorias = { Categorias }
 
-                        />} /
-                        >
-                        <
-                        Route
+                        />} />
+                        <Route
                         exact path = '/Productos'
                         component = {
                             () => < ObtenerProducto
                             Productos = { Productos }
+                          />}
 
+                            />
+                            <Route
+                            exact path ='/Usuario/:id'
+                            render={(props) =>{
+                             //La variable Usuarios que utilizamos en ela busqueda en la del useState   
+                             //Hay que revisar bien los parametro que pones aqui tuve mucho problemas para importarlo solo por poner un id y ya de habia destivado el valor id 
+                             //solo hay que revisar  y aqui hacemos que nos devuelve un valor especifico
+                            const Usuario= Usuarios.usuarios.filter((usuario) =>usuario.uid === props.match.params.id);
+                    
+                            return (
+                                <UsuarioInfo
+                                //Lo ponenomos en cero nos la funcion filter hace una copia del arreglo completo
+                                usuario={Usuario[0]}
+                                guardarConsulta={guardarConsulta}
 
+                                />
+                            )
 
-                            />}
-
-                            /
-                            >
-                            <
-                            Route
-                            exact path = '/Usuario/:id'
-                            component = { Usuarioinfo }
-
-
-                            /> <
-                            /Switch>
-
-
-                            <
-                            /Router>
-
-
-
+                            } }
+                            />
+                             </Switch>
+                            </Router>
                         );
                     }
 

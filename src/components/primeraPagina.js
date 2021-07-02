@@ -42,131 +42,97 @@ const PrimeraPagina = (props) => {
             })
     }
 
-    return ( <
-        Fragment >
-        <
-        h1 > Crear Usuario < /h1> <
-        div className = "container mt-5 py-5" >
-        <
-        div className = "row" >
+    return ( <Fragment>
+        <h1 > Crear Usuario </h1>
+         <div className = "container mt-5 py-5" >
+        <div className = "row" >
 
-        <
-        div className = "col-12 mb-5 d-flex justify-content-center" >
-        <
-        Link to = { '/' }
-        className = "btn btn-success text-uppercase py-2 px-5 font-weight-bold" > Regresar < /Link> <
-        /div> <
-        div className = "col-md-8 mx-auto" >
-        <
-        form onSubmit = { CrearNuevoUsuario }
-        className = "bg-white p-5 bordered" >
+        <div className = "col-12 mb-5 d-flex justify-content-center" >
+        <Link to = { '/' }className = "btn btn-success text-uppercase py-2 px-5 font-weight-bold" > Regresar </Link> </div> 
+        <div className = "col-md-8 mx-auto" >
+        <form onSubmit = { CrearNuevoUsuario }className = "bg-white p-5 bordered" >
 
-        <
-        div className = "form-group" >
-        <
-        label htmlFor = "nombre" > Nombre Completo < /label> <
-        input type = "text"
+        <div className = "form-group" >
+        <label htmlFor = "nombre" > Nombre Completo </label> 
+        <input type = "text"
         className = "form-control form-control-lg"
         id = "nombre"
         name = "nombre"
         placeholder = "Nombre Completo Usuario"
         //Es una funcion de boton de react con onchange y metemos la funcion
         onChange = { AgregarNuevoUsuario }
-        /> <
-        /div> <
-        div className = "from-group" >
-        <
-        label htmlFor = 'correo' > Correo < /label> <
-        input type = "email"
+        /> </div>
+         <div className = "from-group" >
+        <label htmlFor = 'correo' > Correo </label> 
+        <input type = "email"
         className = "form-control form-control-"
         id = 'correo'
         name = 'correo'
         onChange = { AgregarNuevoUsuario }
-        /> <
-        /div>
+        /> </div>
 
-        <
-        div className = "form-group" >
-        <
-        label htmlFor = "propietario" > Rol < /label> <
-        input type = "text"
+        <div className = "form-group" >
+        <label htmlFor = "propietario" > Rol </label> 
+        <input type = "text"
         className = "form-control form-control-lg"
         id = "rol"
         name = "rol"
         placeholder = "Rol Usuario"
         onChange = { AgregarNuevoUsuario }
-        /> <
-        /div>
+        /> </div>
 
-        <
-        div className = "form-group" >
-        <
-        label htmlFor = "telefono" > Teléfono < /label> <
-        input type = "tel"
+        <div className = "form-group" >
+        <label htmlFor = "telefono" > Teléfono </label> <input type = "tel"
         className = "form-control form-control-lg"
         id = "telefono"
         name = "telefono"
         placeholder = "Teléfono"
         onChange = { AgregarNuevoUsuario }
-        /> <
-        /div>
+        /> </div>
 
-        <
-        div className = "form-group" >
-        <
-        label htmlFor = "fecha" > Fecha Alta < /label> <
-        input type = "date"
+        <div className = "form-group" >
+        <label htmlFor = "fecha" > Fecha Alta </label>
+         <input type = "date"
         className = "form-control form-control-lg"
         id = "fecha"
         name = "fecha"
         onChange = { AgregarNuevoUsuario }
-        /> <
-        /div>
+        /> </div>
 
 
-        <
-        div className = "form-group" >
-        <
-        label htmlFor = "hora" > Hora Alta < /label> <
-        input type = "time"
+        <div className = "form-group" >
+        <label htmlFor = "hora" > Hora Alta </label>
+         <input type = "time"
         className = "form-control form-control-lg"
         id = "hora"
         name = "hora"
         onChange = { AgregarNuevoUsuario }
-        /> <
-        /div> <
-        div className = "form-group" >
-        <
-        label htmlFor = "password" > Contraseña < /label> <
-        input type = "password"
+        /> 
+        </div> 
+        <div className = "form-group" >
+        <label htmlFor = "password" > Contraseña 
+        </label> <input type = "password"
         className = "form-control"
         id = 'password'
         name = "password"
         onChange = { AgregarNuevoUsuario }
-        /> <
-        /div>
+        /> </div>
 
 
-        <
-        div className = "form-group" >
-        <
-        label htmlFor = "descripcion" > Descripcion < /label> <
-        textarea className = "form-control"
+        <div className = "form-group" >
+        <label htmlFor = "descripcion" > Descripcion </label> 
+        <textarea className = "form-control"
         name = "descripcion"
         rows = "3"
 
         onChange = { AgregarNuevoUsuario } >
-        < /textarea> <
-        /div> <
+        </textarea> </div> <
         input type = "submit"
         className = "btn btn-primary mt-3 w-100 p-3 text-uppercase font-weight-bold"
         value = "Crear Cuenta" / >
-        <
-        /form> <
-        /div> <
-        /div> <
-        /div> <
-        /Fragment>
+        </form> </div> 
+        </div> </div>
+         </Fragment>
     );
 }
 

@@ -14,12 +14,10 @@ const ObtenerProducto=({Productos})=>{
 
 <h1 className="my-5">{Productos.msg}</h1>
 <div className="container mt-5 py-5">
-<div className="row">
-
+      <div className="row">
        <div className="col-12 mb-5 d-flex">
        <Link to={'/'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> Regresar</Link> 
        </div>
-      
        <div className="col-md-8 mx-auto">
       <div className="list-group">
         {Productos.productos.map((p)=>(
@@ -34,36 +32,19 @@ const ObtenerProducto=({Productos})=>{
       <h3>precio</h3><p>{p.precio}</p>
       <h3>Creado por</h3><p>{p.usuario.nombre}</p>
       <h3>id usuario</h3><p>{p.usuario._id}</p>
-    
       </small>
-      
       </div>
       <p className="mb-0">informacion del usuario</p>
       <div className="contacto py-3">informacion del usuario</div>
       <p>{p.nombre}</p>
       <p>Mas info del usuario</p>
-    
       </a>
         ))}
-
       </div>
      </div>
-
-
       </div>
       </div>
-      
-
-     </Fragment>
-
-
-
-
+      </Fragment>
     )
-
-
-
 }
-
-
 export default ObtenerProducto;
