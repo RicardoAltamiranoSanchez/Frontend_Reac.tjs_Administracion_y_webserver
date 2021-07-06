@@ -23,22 +23,23 @@ const ObtenerProducto=({Productos})=>{
         {Productos.productos.map((p)=>(
       //En react no se utiliza las etiquetas se utiliza otra cosa <a></a>  key es para tener un identificador unico utilizamos el iud de usuarios para eso       
       //debemos importar de react-douter-dom link ya que hace nuestra app mas rapida
-      <a key={p._id} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
+      <Link to={`/ProductoInfo/${p._id}`} key={p._id} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
       <div className="d-flex w-100 justify-content-between mb-4">
       <h3 className="mb-3">Imagen</h3>
       <small class="fecha-alta">
       <h3>id producto</h3><p>{p._id}</p>
       <h3>nombre</h3><p>{p.nombre}</p>
       <h3>precio</h3><p>{p.precio}</p>
-      <h3>Creado por</h3><p>{p.usuario.nombre}</p>
-      <h3>id usuario</h3><p>{p.usuario._id}</p>
+      
       </small>
       </div>
-      <p className="mb-0">informacion del usuario</p>
-      <div className="contacto py-3">informacion del usuario</div>
+      <p className="mb-0">informacion del producto</p>
+      <div className="contacto py-3">informacion del producto</div>
       <p>{p.nombre}</p>
-      <p>Mas info del usuario</p>
-      </a>
+      <p>Mas info del producto</p>
+      <h3>ver</h3>
+      </Link>
+      
         ))}
       </div>
      </div>

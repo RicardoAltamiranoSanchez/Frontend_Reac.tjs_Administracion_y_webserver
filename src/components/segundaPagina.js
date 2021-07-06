@@ -33,7 +33,7 @@ const CategoriasPagina = ({Categorias}) => {
         {Categorias.categoria.map((c)=>(
       //En react no se utiliza las etiquetas se utiliza otra cosa <a></a>  key es para tener un identificador unico utilizamos el iud de usuarios para eso       
       //debemos importar de react-douter-dom link ya que hace nuestra app mas rapida
-      <a key={c._id} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
+      <Link to="/" key={c._id} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
       <div className="d-flex w-100 justify-content-between mb-4">
       <h3 className="mb-3">{c.nombre}</h3>
       <small class="fecha-alta">
@@ -44,9 +44,7 @@ const CategoriasPagina = ({Categorias}) => {
       
       </div>
       <Link to={'/'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> Ir</Link> 
-
-    
-      </a>
+       </Link>
         ))}
 
       </div>

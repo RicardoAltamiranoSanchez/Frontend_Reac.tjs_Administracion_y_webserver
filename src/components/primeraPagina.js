@@ -17,26 +17,26 @@ const PrimeraPagina = (props) => {
         e.preventDefault();
         console.log(e.target.name);
         console.log(e.target.value);
+        console.log(NuevoUsuario);
         GuardarNuevoUsuario({
             //Lo que hace es que va tomar una copia actual de useState
             ...NuevoUsuario,
             //Y vamos a reescribir solomente lo que el usuario este escribiendo
-            [e.target.name]: [e.target.value]
+            [e.target.name]: e.target.value
 
         })
 
     }
     const CrearNuevoUsuario = (e) => {
         e.preventDefault();
-
+       
         Axios.post('http://localhost:8080/Api/Usuarios', NuevoUsuario)
             .then(response => {
 
                 console.log(response.data);
                 console.log(NuevoUsuario);
-                //lo ponemos en verdadero para refrescar la pagina
-                props.guardarConsulta = (true);
-
+                //lo ponemos en verdadero para refrescar la pagina sin un igual por que nos marca error
+                props.guardarConsulta(true);
                 // Redireccionar
                 props.history.push('/')
             })

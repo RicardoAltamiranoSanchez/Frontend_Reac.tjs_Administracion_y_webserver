@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Practica from './components/prueba';
 import PrimeraPagina from './components/primeraPagina';
 import CategoriasPagina from './components/segundaPagina';
-import UsuarioInfo from './components/Usuario';
+import UsuarioInfo from './components/pagina/Usuario';
+import ProductoInfo from './components/pagina/Producto';
 
 import ObtenerProducto from './components/producto';
 
@@ -116,8 +117,34 @@ function App() {
 
                                 />
                             )
-
                             } }
+                            />
+                            <Route
+                            exact path ='/ProductoInfo/:id'
+                            render={(props) => {
+
+                            const Producto =Productos.productos.filter((producto)=> producto._id === props.match.params.id);
+
+                              return (
+
+                              <ProductoInfo
+                              producto={Producto[0]}
+                              guardarConsulta= { guardarConsulta }
+
+                              />
+
+
+                              )
+                               
+          
+
+
+                            }}
+                            
+
+
+
+
                             />
                              </Switch>
                             </Router>

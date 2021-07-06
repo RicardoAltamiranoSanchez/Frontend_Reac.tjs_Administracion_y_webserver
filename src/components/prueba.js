@@ -3,14 +3,14 @@ import {Link} from 'react-router-dom';
 const Practica = ({Usuarios}) => {
       console.log(Usuarios);
     if(Usuarios.length === 0 ){return null}
-   
+     const {total}=Usuarios;
     Usuarios.usuarios.forEach((usuarios) => (
           console.log( usuarios.nombre)
     ));
 
 return ( 
 <Fragment>
-<h1 className="my-5">Administrador de Usuarios</h1>
+<h1 className="my-5">Administrador de Usuarios Total:{total}</h1>
 <div className="container mt-5 py-5">
 <div className="row">
 
@@ -47,15 +47,22 @@ return (
       <div className="contacto py-3">informacion del usuario</div>
       <p>{u.description}</p>
       <p>Mas info del usuario</p>
+      <h3>ver</h3>
     
       </Link>
+      
         ))}
 
       </div>
 
       </div>
+      <div>
+            
+      </div>
+     
 
 </div>
+
 </div>  
  </Fragment>
       );

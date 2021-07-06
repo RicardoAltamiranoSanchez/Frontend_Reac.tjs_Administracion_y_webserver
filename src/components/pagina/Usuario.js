@@ -1,7 +1,7 @@
 import React,{Fragment,useState} from 'react';
 //El withRouter es para utilizar de nuevo los proopms ya se eliminan cuando estamos pasando a otra ruta
-import {  withRouter } from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import { Link,withRouter } from 'react-router-dom';
+
 
 
 const UsuarioInfo= (props) => {
