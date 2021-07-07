@@ -37,7 +37,8 @@ const ObtenerProducto=({Productos})=>{
       <div className="contacto py-3">informacion del producto</div>
       <p>{p.nombre}</p>
       <p>Mas info del producto</p>
-      <h3>ver</h3>
+      <Link to={`/ProductoInfo/${p._id}`} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> mas detalle</Link> 
+
       </Link>
       
         ))}

@@ -47,8 +47,9 @@ return (
       <div className="contacto py-3">informacion del usuario</div>
       <p>{u.description}</p>
       <p>Mas info del usuario</p>
-      <h3>ver</h3>
     
+      <Link to={`/Usuario/${u.uid}`} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> mas detalle</Link> 
+
       </Link>
       
         ))}
@@ -57,7 +58,7 @@ return (
 
       </div>
       <div>
-            
+       
       </div>
      
 

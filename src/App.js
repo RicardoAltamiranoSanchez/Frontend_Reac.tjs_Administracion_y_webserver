@@ -122,29 +122,15 @@ function App() {
                             <Route
                             exact path ='/ProductoInfo/:id'
                             render={(props) => {
-
                             const Producto =Productos.productos.filter((producto)=> producto._id === props.match.params.id);
-
                               return (
 
                               <ProductoInfo
                               producto={Producto[0]}
                               guardarConsulta= { guardarConsulta }
-
                               />
-
-
                               )
-                               
-          
-
-
                             }}
-                            
-
-
-
-
                             />
                              </Switch>
                             </Router>

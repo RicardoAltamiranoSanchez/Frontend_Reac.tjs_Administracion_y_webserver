@@ -1,6 +1,7 @@
 import React,{Fragment} from 'react';
-import {Link } from 'react-router-dom';
-
+import {Link, withRouter} from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Axios from '../../config/axios'
 
 
 
@@ -13,7 +14,41 @@ const ProductoInfo=(props) => {
         return null;
      }
     const {nombre,_id,precio,categoria,usuario}=props.producto;
+ const eliminarProducto=(id)=>{
+     
+    Swal.fire({
+        title: '¿Estas seguro?',
+        text: "El Producto ya no podras recuperardo despues",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar!',
+        cancelButtonText:'Cancelar'
+    }).then((result) => {
+        if (result.value) {
 
+         
+            // Eliminado de la base de datos
+            Axios.delete(`http://localhost:8080/Api/productos/${id}`)
+                .then(respuesta => {
+                       // Alerta de eliminado
+            Swal.fire(
+                '¡Eliminado!',
+                respuesta.data.msg,
+                'éxito'
+            )
+                    props.guardarConsulta(true);
+                    props.history.push('/Productos');
+                    console.log(respuesta.data);
+                })
+                .catch(error => {
+                    console.log(`Hubo un error hable con el adminsitrador ${error}`)
+                })
+        }
+    })
+
+ }
  return(
  
  <Fragment>
@@ -58,7 +93,7 @@ const ProductoInfo=(props) => {
                         <button 
                             type="button"
                             className="text-uppercase py-2 px-5 font-weight-bold btn btn-danger col"
-                            
+                            onClick={()=>{eliminarProducto(_id)}}
                         >
                             Eliminar &times;
                         </button>
@@ -81,4 +116,4 @@ const ProductoInfo=(props) => {
 
 }
 
-export default ProductoInfo;
+export default withRouter(  ProductoInfo);

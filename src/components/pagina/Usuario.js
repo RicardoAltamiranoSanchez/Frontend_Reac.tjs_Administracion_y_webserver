@@ -1,6 +1,8 @@
 import React,{Fragment,useState} from 'react';
 //El withRouter es para utilizar de nuevo los proopms ya se eliminan cuando estamos pasando a otra ruta
 import { Link,withRouter } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Axios from '../../config/axios';
 
 
 
@@ -15,7 +17,63 @@ const UsuarioInfo= (props) => {
     return null;
 }
  const {usuario:{nombre,descripcion,correo,rol,uid}} = props;
-   
+  
+ //Hacemos una funcion para eliminar al cliente devbemos importar axios desde la configuracion y indicamos el id que vienen dentro de los props solo hacemos destrution 
+const eliminarUsuario=(uid) => {
+
+
+    Swal.fire({
+        title: '¿Estas seguro?',
+        text: "Un usuario ya no se puede recuperar",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar!',
+        cancelButtonText:'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+
+         
+            // Eliminado de la base de datos
+            Axios.delete(`http://localhost:8080/Api/Usuarios/${uid}`)
+                .then(respuesta => {
+                       // Alerta de eliminado
+            Swal.fire(
+                '¡Eliminado!',
+                respuesta.data.msg,
+                'éxito'
+            )
+                    props.guardarConsulta(true);
+                    props.history.push('/');
+                    console.log(respuesta);
+                })
+                .catch(error => {
+                    //obtenemos el mensaje con error.response
+                    Swal.fire(
+                        '¡Fail!',
+                        error.response.data.msg,
+                        'Fail'
+                    )
+                    console.log(error.response.data);
+                })
+        }
+    })
+}
+const actualizarUsuario=(uid) => {
+
+    Axios.put(`http://localhost:8080/Api/Usuarios/${uid}`).then((response) =>
+    {
+        console.log(response);
+    }
+     ).catch(error=>{
+
+     console.log(`Hubo un error hable con el administrador ${error}`);
+
+     })
+
+
+}
       
     return(
 
@@ -51,15 +109,23 @@ const UsuarioInfo= (props) => {
                         <button 
                             type="button"
                             className="text-uppercase py-2 px-5 font-weight-bold btn btn-danger col"
-                            
+                            //el onClick lo utilizamos para cuando de click que haga la funcion que de pasamos 
+                               //para eliminar debemos hacer un arrofuncion por si la mandamos por funcion no sale error
+                            onClick={() =>{ eliminarUsuario(uid); }}
+
+
                         >
                             Eliminar &times;
                         </button>
                         <button 
                         type="button"
                         className="text-uppercase py-2 px-5 font-weight-bold btn btn-success col"
-                            
-                        >Actualizar</button>
+                     
+                        onClick={() =>{ actualizarUsuario(uid)}
+                        
+                        }
+                        
+                        >Actualizar &times;</button>
                     </div>
                 </div>
             </div>

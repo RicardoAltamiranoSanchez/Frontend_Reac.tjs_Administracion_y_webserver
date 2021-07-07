@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 //para recuperar los props despues que se recargue la pagina es withRouter
 import Axios from '../config/axios'
+import Swal from 'sweetalert2';
 
 //debemos poner siempre con mayusculas la primera letra en una funcion en react marcar mucho errores por eso
 const PrimeraPagina = (props) => {
@@ -29,9 +30,18 @@ const PrimeraPagina = (props) => {
     }
     const CrearNuevoUsuario = (e) => {
         e.preventDefault();
+         
+   
        
         Axios.post('http://localhost:8080/Api/Usuarios', NuevoUsuario)
             .then(response => {
+                Swal.fire({
+                    position: 'top-end',
+                     icon: 'success',
+                     title: 'Usuario Registrado con exito',
+                     showConfirmButton: false,
+                     timer: 1500
+               })
 
                 console.log(response.data);
                 console.log(NuevoUsuario);
