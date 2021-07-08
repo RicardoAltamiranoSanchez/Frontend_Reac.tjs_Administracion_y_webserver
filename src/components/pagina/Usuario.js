@@ -50,29 +50,16 @@ const eliminarUsuario=(uid) => {
                 })
                 .catch(error => {
                     //obtenemos el mensaje con error.response
-                    Swal.fire(
-                        '¡Fail!',
-                        error.response.data.msg,
-                        'Fail'
-                    )
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.response.data.msg,
+                        
+                        })
                     console.log(error.response.data);
                 })
         }
     })
-}
-const actualizarUsuario=(uid) => {
-
-    Axios.put(`http://localhost:8080/Api/Usuarios/${uid}`).then((response) =>
-    {
-        console.log(response);
-    }
-     ).catch(error=>{
-
-     console.log(`Hubo un error hable con el administrador ${error}`);
-
-     })
-
-
 }
       
     return(
@@ -121,9 +108,9 @@ const actualizarUsuario=(uid) => {
                         type="button"
                         className="text-uppercase py-2 px-5 font-weight-bold btn btn-success col"
                      
-                        onClick={() =>{ actualizarUsuario(uid)}
                         
-                        }
+                        
+                        
                         
                         >Actualizar &times;</button>
                     </div>

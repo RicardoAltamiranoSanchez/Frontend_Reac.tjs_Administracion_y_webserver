@@ -43,8 +43,14 @@ const ProductoInfo=(props) => {
                     console.log(respuesta.data);
                 })
                 .catch(error => {
-                    console.log(`Hubo un error hable con el adminsitrador ${error}`)
-                })
+                //obtenemos el mensaje con error.response
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.response.data.msg,
+                    })
+                console.log(error.response.data);
+            })
         }
     })
 

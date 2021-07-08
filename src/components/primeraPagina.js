@@ -49,6 +49,13 @@ const PrimeraPagina = (props) => {
                 props.guardarConsulta(true);
                 // Redireccionar
                 props.history.push('/')
+            }).catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.response.data.errors[0].msg,
+                    })
+            console.log(error.response.data.errors[0].msg);
             })
     }
 
@@ -136,10 +143,9 @@ const PrimeraPagina = (props) => {
         rows = "3"
 
         onChange = { AgregarNuevoUsuario } >
-        </textarea> </div> <
-        input type = "submit"
+        </textarea> </div> <input type = "submit"
         className = "btn btn-primary mt-3 w-100 p-3 text-uppercase font-weight-bold"
-        value = "Crear Cuenta" / >
+        value = "Crear Cuenta"/>
         </form> </div> 
         </div> </div>
          </Fragment>

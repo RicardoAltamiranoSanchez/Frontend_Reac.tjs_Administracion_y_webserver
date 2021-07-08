@@ -17,5 +17,6 @@ ReactDOM.render(
 //Instalamos sweetalert2 para las alertas con npm install sweetalert2
 //Pagina donde encontraras los codigos de sweetalert2 https://sweetalert2.github.io/#examples
 //import Swal from 'sweetalert2';
+//https://www.creativosonline.org/formularios-css-html.html formularios
 reportWebVitals();
 

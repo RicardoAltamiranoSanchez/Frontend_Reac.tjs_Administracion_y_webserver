@@ -7,7 +7,7 @@ import PrimeraPagina from './components/primeraPagina';
 import CategoriasPagina from './components/segundaPagina';
 import UsuarioInfo from './components/pagina/Usuario';
 import ProductoInfo from './components/pagina/Producto';
-
+import NuevoProducto from './components/pagina/NuevoProducto'
 import ObtenerProducto from './components/producto';
 
 import Axios from './config/axios';
@@ -82,21 +82,21 @@ function App() {
                 <Route
                 exact path = '/CrearUsuario'
                 component = {
-                    () => < PrimeraPagina
+                    () => <PrimeraPagina
                     guardarConsulta = { guardarConsulta }
                     />} />
 
                     <Route
                     exact path = '/Categorias'
                     component = {
-                        () => < CategoriasPagina
+                        () => <CategoriasPagina
                         Categorias = { Categorias }
 
                         />} />
                         <Route
                         exact path = '/Productos'
                         component = {
-                            () => < ObtenerProducto
+                            () => <ObtenerProducto
                             Productos = { Productos }
                           />}
 
@@ -132,6 +132,13 @@ function App() {
                               )
                             }}
                             />
+
+                            <Route 
+                            exact path = '/NuevoProducto'
+                            component = { ()=> <NuevoProducto
+                            guardarConsulta={guardarConsulta}                            
+                         />}                         
+                         />
                              </Switch>
                             </Router>
                         );
