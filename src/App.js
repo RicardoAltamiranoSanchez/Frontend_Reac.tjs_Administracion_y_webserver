@@ -9,11 +9,7 @@ import UsuarioInfo from './components/pagina/Usuario';
 import ProductoInfo from './components/pagina/Producto';
 import NuevoProducto from './components/pagina/NuevoProducto'
 import ObtenerProducto from './components/producto';
-
 import Axios from './config/axios';
-
-
-
 function App() {
     console.log(process.env.REACT_APP_BACKEND_URL);
     const [Usuarios, guardaUsuarios] = useState([]);
@@ -34,14 +30,10 @@ function App() {
                     })
                     .catch(err => console.log(err))
             }
-
-
             //Consultamos en la ruta categoria de nuestra api
             const ConsultarCategorias = () => {
-
                 Axios.get('http://localhost:8080/Api/categorias')
                     .then((response) => {
-
                         guardarCategorias(response.data);
 
                     })
@@ -108,7 +100,8 @@ function App() {
                              //Hay que revisar bien los parametro que pones aqui tuve mucho problemas para importarlo solo por poner un id y ya de habia destivado el valor id 
                              //solo hay que revisar  y aqui hacemos que nos devuelve un valor especifico
                             const Usuario= Usuarios.usuarios.filter((usuario) =>usuario.uid === props.match.params.id);
-                    
+                            
+
                             return (
                                 <UsuarioInfo
                                 //Lo ponenomos en cero nos la funcion filter hace una copia del arreglo completo
@@ -119,22 +112,22 @@ function App() {
                             )
                             } }
                             />
+
                             <Route
                             exact path ='/ProductoInfo/:id'
                             render={(props) => {
                             const Producto =Productos.productos.filter((producto)=> producto._id === props.match.params.id);
                               return (
-
-                              <ProductoInfo
+                             <ProductoInfo
                               producto={Producto[0]}
                               guardarConsulta= { guardarConsulta }
                               />
+
                               )
                             }}
                             />
-
-                            <Route 
-                            exact path = '/NuevoProducto'
+                           <Route 
+                            exact path = '/NuevoProducto/:id'
                             component = { ()=> <NuevoProducto
                             guardarConsulta={guardarConsulta}                            
                          />}                         
@@ -143,7 +136,6 @@ function App() {
                             </Router>
                         );
                     }
-
                     export default App;
                     //debemos instalar axios para hacer las peticiones ala api y obtener la informacion de la base de datos 
                     //npm install axios

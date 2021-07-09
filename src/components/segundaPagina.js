@@ -1,5 +1,6 @@
 import React,{Fragment} from 'react';
 import {Link} from 'react-router-dom';
+
 const CategoriasPagina = ({Categorias}) => {
     console.log(Categorias)
     if(Categorias.length === 0){return null}
@@ -9,13 +10,7 @@ const CategoriasPagina = ({Categorias}) => {
         console.log(c)
     })
 
-  
     
-
-
-    
-
-
     return ( <Fragment>
     <h1 className="my-5">{Categorias.msg}</h1>
 <div className="container mt-5 py-5">
@@ -43,7 +38,7 @@ const CategoriasPagina = ({Categorias}) => {
       </small>
       
       </div>
-      <Link to={'/'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> Ir</Link> 
+      <Link to={`/NuevoProducto/${c._id}`} key="" className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center">Crear Nuevo Producto</Link> 
        </Link>
         ))}
 

@@ -31,8 +31,8 @@ const ObtenerProducto=({Productos})=>{
       <h3 className="mb-3">Imagen</h3>
       <small class="fecha-alta">
       <h3>id producto</h3><p>{p._id}</p>
-      <h3>nombre</h3><p>{p.nombre}</p>
-      <h3>precio</h3><p>{p.precio}</p>
+      <h3>nombre</h3><p>{p.nombreProducto}</p>
+      <h3>precio</h3><p>{p.precioProducto}</p>
       
       </small>
       </div>
