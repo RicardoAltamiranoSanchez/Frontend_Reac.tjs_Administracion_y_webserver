@@ -14,7 +14,7 @@ const ObtenerProducto=({Productos})=>{
 
 <h1 className="my-5">{Productos.msg}</h1>
 <div className="container mt-5 py-5">
-      <div className="row">
+       <div className="row">
        <div className="col-12 mb-5 d-flex">
        <Link to={'/'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> Regresar</Link> 
        </div>
@@ -31,8 +31,8 @@ const ObtenerProducto=({Productos})=>{
       <h3 className="mb-3">Imagen</h3>
       <small class="fecha-alta">
       <h3>id producto</h3><p>{p._id}</p>
-      <h3>nombre</h3><p>{p.nombreProducto}</p>
-      <h3>precio</h3><p>{p.precioProducto}</p>
+      <h3>nombre</h3><p>{p.nombre}</p>
+      <h3>precio</h3><p>{p.precio}</p>
       
       </small>
       </div>

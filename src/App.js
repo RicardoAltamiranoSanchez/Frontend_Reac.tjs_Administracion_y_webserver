@@ -9,6 +9,7 @@ import UsuarioInfo from './components/pagina/Usuario';
 import ProductoInfo from './components/pagina/Producto';
 import NuevoProducto from './components/pagina/NuevoProducto'
 import ObtenerProducto from './components/producto';
+import ActualizarUsuario from './components/pagina/ActualizarUsuario';
 import Axios from './config/axios';
 function App() {
     console.log(process.env.REACT_APP_BACKEND_URL);
@@ -132,6 +133,22 @@ function App() {
                             guardarConsulta={guardarConsulta}                            
                          />}                         
                          />
+                         <Route
+                            exact path ='/ActualizarUsuario/:id'
+                            render={(props) => {
+                            const usuarios = Usuarios.usuarios.filter((usuario)=> usuario.uid === props.match.params.id);
+                            
+                             
+                              return (
+                             <ActualizarUsuario
+                              usuario={usuarios[0]}
+                              guardarConsulta= { guardarConsulta }
+                              />
+
+                              )
+                            }}
+                            />
+                         
                              </Switch>
                             </Router>
                         );

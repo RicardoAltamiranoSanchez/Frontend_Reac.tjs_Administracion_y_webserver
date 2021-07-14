@@ -11,11 +11,13 @@ const UsuarioInfo= (props) => {
   
   console.log(props.usuario);
   if(!props.usuario) {
+
     //Lo redirigimos ala pagina principal
     props.history.push('/');
     //Para quitar el error del navegador
-    return null;
+    return null;    
 }
+
  const {usuario:{nombre,descripcion,correo,rol,uid}} = props;
   
  //Hacemos una funcion para eliminar al cliente devbemos importar axios desde la configuracion y indicamos el id que vienen dentro de los props solo hacemos destrution 
@@ -99,20 +101,17 @@ const eliminarUsuario=(uid) => {
                             //el onClick lo utilizamos para cuando de click que haga la funcion que de pasamos 
                                //para eliminar debemos hacer un arrofuncion por si la mandamos por funcion no sale error
                             onClick={() =>{ eliminarUsuario(uid); }}
-
-
-                        >
-                            Eliminar &times;
+                            >
+                            Eliminar;
                         </button>
+         <Link to={`/ActualizarUsuario/${uid}`} >
                         <button 
                         type="button"
                         className="text-uppercase py-2 px-5 font-weight-bold btn btn-success col"
-                     
-                        
-                        
-                        
-                        
-                        >Actualizar &times;</button>
+                        >Actualizar &times;</button> 
+                    
+                    </Link>
+                    
                     </div>
                 </div>
             </div>

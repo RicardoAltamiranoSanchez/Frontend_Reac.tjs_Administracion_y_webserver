@@ -11,11 +11,10 @@ const NuevoProducto = (props) => {
 
 const [NuevoProducto,GuardarProducto]=useState({
 
-     nombreProducto:'',
-     precioProducto:'',
-     marcaProducto:'',
-     descripcionProducto:'',
-
+     nombre:'',
+     precio:'',
+     marca:'',
+     descripcion:'',  
    })
  
    const agregarProducto=(e) => {
@@ -31,7 +30,7 @@ const [NuevoProducto,GuardarProducto]=useState({
    
    const crearProducto=(e) => {
       e.preventDefault();
- 
+        console.log(JSON.stringify(params.id)); 
        Axios.post(`http://localhost:8080/Api/productos/${params.id}`,NuevoProducto)
        .then((response) =>{
          
@@ -46,11 +45,6 @@ const [NuevoProducto,GuardarProducto]=useState({
            console.log(err.response)
        })
  }
-
-
-  
-
-
    return (
 
 
@@ -68,8 +62,8 @@ const [NuevoProducto,GuardarProducto]=useState({
         <label htmlFor = "nombre" > Nombre  </label> 
         <input type = "text"
         className = "form-control form-control-lg"
-        id = "nombreProducto"
-        name = "nombreProducto"
+        id = "nombre"
+        name = "nombre"
         placeholder = "NOMBRE PRODUCTO"
         required 
         onChange={agregarProducto}
@@ -80,8 +74,8 @@ const [NuevoProducto,GuardarProducto]=useState({
         <label htmlFor = 'Precio' >Precio</label> 
         <input type = "number"
         className = "form-control form-control-lg"
-        id = 'precioProducto'
-        name = 'precioProducto'
+        id = 'precio'
+        name = 'precio'
         placeholder ="PRECIO"
         required 
         onChange={agregarProducto}
@@ -91,8 +85,8 @@ const [NuevoProducto,GuardarProducto]=useState({
         <label htmlFor = "text" >Marca </label> 
         <input type = "text"
         className = "form-control form-control-lg"
-        id = "marcaProducto"
-        name = "marcaProducto"
+        id = "marca"
+        name = "marca"
         placeholder = "MARCA"
         required 
         onChange={agregarProducto}
@@ -100,7 +94,7 @@ const [NuevoProducto,GuardarProducto]=useState({
         <div className = "form-group" >
         <label htmlFor = "descripcion" > Descripcion </label> 
         <textarea className = "form-control"
-        name = "descripcionProducto"
+        name = "descripcion"
         rows = "2" 
         placeholder = "DESCRIPCION"
         required 

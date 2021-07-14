@@ -10,23 +10,19 @@ const Practica = ({Usuarios}) => {
 
 return ( 
 <Fragment>
+
 <h1 className="my-5">Administrador de Usuarios Total:{total}</h1>
 <div className="container mt-5 py-5">
 <div className="row">
-
       <div className="col-12 mb-5 d-flex">
-
        <Link to={'/CrearUsuario'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold">nuevo Usuario</Link> 
       </div>
       <div className="col-11 mb-5 ">
       <Link to={'/Categorias'}className="btn btn-success text-uppercase py-2 px-5 font-weight-bold">categorias</Link>
-
       </div>
       <div className="col-11 mb-5 ">
       <Link to={'/Productos'}className="btn btn-success text-uppercase py-2 px-5 font-weight-bold">Productos</Link>
-
       </div>
-      
       <div className="col-md-8 mx-auto">
       <div className="list-group">
         {Usuarios.usuarios.map((u)=>(
@@ -39,23 +35,17 @@ return (
       <small class="fecha-alta">
       <h3>Correo</h3><p>{u.correo}</p>
       <h3>Privilegios</h3><p>{u.rol}</p>
-    
-      </small>
       
+      </small>
       </div>
       <p className="mb-0">informacion del usuario</p>
       <div className="contacto py-3">informacion del usuario</div>
       <p>{u.description}</p>
       <p>Mas info del usuario</p>
-    
-      <Link to={`/Usuario/${u.uid}`} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> mas detalle</Link> 
-
+      <Link to={`/Usuario/${u.uid}`} key={u.uid} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> mas detalle</Link> 
       </Link>
-      
         ))}
-
       </div>
-
       </div>
       <div>
        

@@ -1,7 +1,12 @@
-import React,{Fragment} from 'react';
+import React,{Fragment, useState} from 'react';
 import {Link} from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Axios from '../config/axios';
 
-const CategoriasPagina = ({Categorias}) => {
+
+
+
+const CategoriasPagina = ({Categorias},props) => {
     console.log(Categorias)
     if(Categorias.length === 0){return null}
     console.log(Categorias.msg);
@@ -10,6 +15,14 @@ const CategoriasPagina = ({Categorias}) => {
         console.log(c)
     })
 
+ 
+    const CrearCategorias = async (e)=>{
+
+      const AgregarHtml=() => {
+          //La verdad ni idea de que iba hacer
+
+      }
+   }
     
     return ( <Fragment>
     <h1 className="my-5">{Categorias.msg}</h1>
@@ -19,7 +32,12 @@ const CategoriasPagina = ({Categorias}) => {
       <div className="col-12 mb-5 d-flex ">
 
        <Link to={'/'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> Regresar</Link> 
-      </div>
+       <input  type="button"  className="text-uppercase py2 px-5 font-weight-bold" value="Crear Categoria"
+         onClick={CrearCategorias} 
+       />
+      </div> 
+     
+
       <div className="col-11 mb-5 ">
       <div className="col-md-8 mx-auto">
       </div>
