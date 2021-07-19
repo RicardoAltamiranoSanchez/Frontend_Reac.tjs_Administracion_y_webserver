@@ -134,19 +134,12 @@ function App() {
                          />}                         
                          />
                          <Route
-                            exact path ='/ActualizarUsuario/:id'
-                            render={(props) => {
-                            const usuarios = Usuarios.usuarios.filter((usuario)=> usuario.uid === props.match.params.id);
-                            
-                             
-                              return (
-                             <ActualizarUsuario
-                              usuario={usuarios[0]}
+                            exact path ='/ActualizarUsuario/:id'                                                         
+                              component={ () => <ActualizarUsuario 
                               guardarConsulta= { guardarConsulta }
-                              />
-
-                              )
-                            }}
+                              Usuario={Usuarios}
+                              />  }
+                                                    
                             />
                          
                              </Switch>

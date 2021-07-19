@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 //debemos poner siempre con mayusculas la primera letra en una funcion en react marcar mucho errores por eso
 const PrimeraPagina = (props) => {
-    // Generar state como objet
+    // Generar state como objecto
     const [NuevoUsuario, GuardarNuevoUsuario] = useState({
         nombre: '',
         correo: '',
@@ -24,7 +24,6 @@ const PrimeraPagina = (props) => {
             ...NuevoUsuario,
             //Y vamos a reescribir solomente lo que el usuario este escribiendo
             [e.target.name]:e.target.value
-
         })
     }
     const CrearNuevoUsuario = (e) => {

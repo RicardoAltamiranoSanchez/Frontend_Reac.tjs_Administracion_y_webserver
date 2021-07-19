@@ -104,13 +104,12 @@ const eliminarUsuario=(uid) => {
                             >
                             Eliminar;
                         </button>
-         <Link to={`/ActualizarUsuario/${uid}`} >
+         <Link to={`/ActualizarUsuario/${uid}`} key={uid} >
                         <button 
                         type="button"
                         className="text-uppercase py-2 px-5 font-weight-bold btn btn-success col"
-                        >Actualizar &times;</button> 
-                    
-                    </Link>
+                        >Actualizar &times;</button>
+                                            </Link>
                     
                     </div>
                 </div>
