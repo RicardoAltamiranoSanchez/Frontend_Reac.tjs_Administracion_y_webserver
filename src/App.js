@@ -17,6 +17,7 @@ function App() {
     const [Categorias, guardarCategorias] = useState([]);
     const [Productos, guardarProductos] = useState([]);
     const [consulta, guardarConsulta] = useState(true);
+ 
     //useEffect es un funcion que se ejecuta cuando hay cambios en el programa 
     useEffect(() => {
         //Creamos un useState para que se recargue la pagina cada vez que insertamos algo 
@@ -49,10 +50,13 @@ function App() {
                     )
                     .catch(err => console.log(err))
             }
+    
 
             ConsultarProductos();
             ConsultarCategorias();
             consultarApi();
+           
+            
         }
     }, [consulta]);
     //de eciamos en consulata en corchetes que cuando ese cambie este atento y vuelva a ejecutar ese codigo para eso es el
@@ -68,6 +72,7 @@ function App() {
             component = {
                 () => < Practica
                 Usuarios = { Usuarios }
+                  
                 />}
 
                 />

@@ -13,7 +13,7 @@ const ProductoInfo=(props) => {
         
         return null;
      }
-    const {nombre,_id,precio,categoria,usuario}=props.producto;
+    const {nombre,_id,precio,categoria,usuario,img}=props.producto;
  const eliminarProducto=(id)=>{
      
     Swal.fire({
@@ -73,6 +73,7 @@ const ProductoInfo=(props) => {
                 <div className="p-5 list-group-item list-group-item-action flex-column align-items-center">
                     <div className="d-flex w-100 justify-content-between mb-4">
                         <h3 className="mb-3">{nombre}</h3>
+                        <img src={img}/>
                         <small className="fecha-alta">
                            <h3>id producto</h3>
                            <p>{_id}</p>

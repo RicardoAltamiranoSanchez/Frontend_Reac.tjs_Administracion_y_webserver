@@ -5,6 +5,14 @@ const ObtenerProducto=({Productos})=>{
 
     console.log(Productos)
     if(Productos.length === 0) {return null}
+     Productos.productos.forEach((p)=>{
+     if(!p.img){
+        p.img="../../assets/default.jpg";
+}
+      
+
+
+})
 
  
 
@@ -36,6 +44,7 @@ const ObtenerProducto=({Productos})=>{
       
       </small>
       </div>
+         <img src={p.img}/>
       <p className="mb-0">informacion del producto</p>
       <div className="contacto py-3">informacion del producto</div>
       <p>{p.nombre}</p>

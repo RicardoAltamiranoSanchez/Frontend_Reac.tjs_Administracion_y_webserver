@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import Axios from '../../config/axios';
 
 
-
 const UsuarioInfo= (props) => {
 
   
@@ -16,9 +15,18 @@ const UsuarioInfo= (props) => {
     props.history.push('/');
     //Para quitar el error del navegador
     return null;    
-}
+};
 
- const {usuario:{nombre,descripcion,correo,rol,uid}} = props;
+
+
+ 
+ const {usuario:{nombre,descripcion,correo,rol,uid,img}} = props; 
+
+ 
+
+console.log(img);
+ 
+
   
  //Hacemos una funcion para eliminar al cliente devbemos importar axios desde la configuracion y indicamos el id que vienen dentro de los props solo hacemos destrution 
 const eliminarUsuario=(uid) => {
@@ -84,8 +92,9 @@ const eliminarUsuario=(uid) => {
                         <small className="rol">
                            <h3>{uid}</h3> 
                         </small>
+                     
                     </div>
-
+                     <img  src={img} />
                     <p className="mb-0">
                         {descripcion}
                     </p>

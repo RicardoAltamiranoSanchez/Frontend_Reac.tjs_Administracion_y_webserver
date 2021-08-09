@@ -1,13 +1,21 @@
 import React ,{Fragment} from 'react';
 import {Link} from 'react-router-dom';
+
+
 const Practica = ({Usuarios}) => {
       console.log(Usuarios);
     if(Usuarios.length === 0 ){return null}
      const {total}=Usuarios;
-    Usuarios.usuarios.forEach((usuarios) => (
-          console.log( usuarios.nombre)
-    ));
-
+ 
+    Usuarios.usuarios.forEach((usuarios) => {
+        if(!usuarios.img){
+           usuarios.img="../../assets/default.jpg";
+        }
+         
+       
+    });
+  
+     
 return ( 
 <Fragment>
 
@@ -32,13 +40,21 @@ return (
       <Link to={`/Usuario/${u.uid}`} key={u.uid} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
       <div className="d-flex w-100 justify-content-between mb-4">
       <h3 className="mb-3">{u.nombre}</h3>
+     
       <small class="fecha-alta">
       <h3>Correo</h3><p>{u.correo}</p>
       <h3>Privilegios</h3><p>{u.rol}</p>
-      
+       
       </small>
+
       </div>
-      <p className="mb-0">informacion del usuario</p>
+
+     
+        <img src={u.img}/>
+          
+
+
+              <p className="mb-0">informacion del usuario</p>
       <div className="contacto py-3">informacion del usuario</div>
       <p>{u.description}</p>
       <p>Mas info del usuario</p>
