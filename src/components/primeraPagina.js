@@ -27,35 +27,9 @@ const PrimeraPagina = (props) => {
             [e.target.name]:e.target.value
         })
     }
-   const subirArchivo= async (e) =>{
- e.preventDefault();
-
-const { value: archivo } = await Swal.fire({
-  title: 'Seleccione una Imagen',
-  input: 'file',
-   
-  inputAttributes: {
-    'accept': 'image/*',
-    'aria-label': 'Upload your profile picture'
-  }
-})
  
 
-console.log(archivo.name);
-if (archivo) {
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    Swal.fire({
-      title: 'Tu imagen se añadio con exito',
-      imageUrl: e.target.result,
-      imageAlt: 'The uploaded picture'
-    })
-  }
-  reader.readAsDataURL(archivo)
-console.log(archivo);
-}
 
-}
     const CrearNuevoUsuario = (e) => {
         e.preventDefault();
          
@@ -63,14 +37,7 @@ console.log(archivo);
        
         Axios.post('http://localhost:8080/Api/Usuarios', NuevoUsuario)
             .then(response => {
-                Axios.post(`http://localhost:8080/Api/uploads/usuarios/${response.data.usuario.uid}`)
-                .then(response=>{
-                 console.log("Exito al subir la imagen")
-
-                   }).catch(error => { console.log("Error al subir la imagen")})
-   
-
-                     console.log(response.data.usuario.uid);
+                
                
                 Swal.fire({
                     position: 'top-end',
@@ -183,9 +150,7 @@ console.log(archivo);
         onChange = { AgregarNuevoUsuario } >
         </textarea> </div>
          
-     
-    <input type="button" value="Añadir una imagen"  onClick = {subirArchivo }    
-/>
+   
          <input type = "submit"
         className = "btn btn-primary mt-3 w-100 p-3 text-uppercase font-weight-bold"
         value = "Crear Cuenta"/>
