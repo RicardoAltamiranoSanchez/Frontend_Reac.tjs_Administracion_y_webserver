@@ -1,64 +1,71 @@
-import React,{Fragment,useState} from 'react';
+import React,{Fragment} from 'react';
 import {Link,withRouter } from 'react-router-dom';
-import Axios from '../../config/axios'
+import Axios from '../../config/axios';
+let nombreNuevo={
+nombre:"",
+correo:"",
+descripcion:"",
+rol:""
 
-
+}
+let Valor=[]
 const ActualizarUsuario=(props) => {
     console.log("Desde la plantilla de Actualizar"+props);
     if(props.Usuario.length === 0 ){return null}
- const [g,G]=useState();
-  
+ let informacion=[]
 const {match:{params}}=props; 
-    
   const id=params.id;
+
   console.log(id);
   console.log("Desde el segundo console.log");
    console.log(props);
-   const Valor= props.Usuario.usuarios.filter((u)=>u.uid ===params.id);
-   const {correo,descripcion,nombre,rol} =Valor[0];
-  
- 
-     
+
+   Valor= props.Usuario.usuarios.filter((u)=>u.uid ===params.id);
    
-
-  
-  
-  const ActualizarUsuarioPeticion=(e)=>{
-      e.preventDefault();
-      console.log("Desde actualizar usuario");
-    try {
- Axios({
-    method:'PUT',
-    url:`http://localhost:8080/Api/Usuarios/${id}`,
-    data:{
-     nombre:"putaaa"
-
+const ObtenerDatos= (e)=>{
+     if(e.target.name==="nombre"){
+      nombreNuevo.nombre=e.target.value;
+      }
+    else if(e.target.name==="correo"){
+       nombreNuevo.correo=e.target.value;
+    }
+    else if(e.target.name==="rol"){
+      nombreNuevo.rol=e.target.value;
+    }else if(e.target.name==="descripcion"){
+      nombreNuevo.descripcion=e.target.value;
+}
+ 
+console.log(e.target.name+" "+e.target.value)
+ 
 }
 
-})
-        
-  .then((response)=>{
+
+const ActualizarUsuarioPeticion=(e)=>{
+      e.preventDefault();
+       const {nombre,correo,rol,descripcion}=nombreNuevo;
+      console.log("Desde actualizar usuario");
+    try {
+Axios({
+    method:'PUT',
+    url:`http://localhost:8080/Api/Usuarios/${id}`,
+    data:{nombre,correo,rol,descripcion
+               
+
+
+} 
+}).then((response)=>{
      //Lo ponemos en verdadero para refrescar la pagina sin un igual por que nos marca error
      props.guardarConsulta(true);
      //Redireccionar
      props.history.push(`/Usuario/${id}`);
     console.log( response.data);
     console.log('Actualizacion exitosa');
-
-
-  }).catch((err)=>{
-
+}).catch((err)=>{
       console.log("Hubo un erro en el put del frontend"+err.response);
-
-  })
- 
-      
+  })     
     } catch (error) {
       console.log(`Error al actualizar el usuario ${error}`);
     }
-       
-
-
   }
   return (
       <Fragment>
@@ -71,7 +78,7 @@ const {match:{params}}=props;
         <div className = "col-12 mb-5 d-flex justify-content-center" >
         <Link to={`/Usuario/${props.match.params.id}`} className = "btn btn-success text-uppercase py-2 px-5 font-weight-bold" > Regresar </Link> </div> 
         <div className = "col-md-8 mx-auto" >
-        <form onClick = { ActualizarUsuarioPeticion } className = "bg-white p-5 bordered" >
+        <form onSubmit = { ActualizarUsuarioPeticion } className = "bg-white p-5 bordered" >
 
         <div className = "form-group" >
         <label htmlFor = "nombre" > Nombre Completo </label> 
@@ -80,7 +87,8 @@ const {match:{params}}=props;
         id = "nombre"
         name = "nombre"
         
-        placeholder={nombre}
+        placeholder={Valor[0].nombre}
+        onChange={ObtenerDatos}
       
       
       //  placeholder ={props.usuario.nombre}
@@ -92,8 +100,9 @@ const {match:{params}}=props;
         <input type = "email"
         className = "form-control form-control-"
         id = 'correo'
-        name = 'correo'
-        placeholder={correo}
+        name = "correo"
+        placeholder={Valor[0].correo}
+        onChange = {ObtenerDatos}
 
        
     //    onChange = { AgregarNuevoUsuario }
@@ -106,8 +115,8 @@ const {match:{params}}=props;
         className = "form-control form-control-lg"
         id = "rol"
         name = "rol"
-        placeholder={rol}
-       
+        placeholder={Valor[0].rol}
+            onChange = {ObtenerDatos}
       
    //     placeholder = {props.usuario.rol}
       //  onChange = { AgregarNuevoUsuario }
@@ -119,7 +128,7 @@ const {match:{params}}=props;
         id = "telefono"
         name = "telefono"
    
-        
+              onChange = {ObtenerDatos}
   //      placeholder = {props.usuario.telefono}
       //  onChange = { AgregarNuevoUsuario }
         /> </div>
@@ -132,7 +141,7 @@ const {match:{params}}=props;
         name = "fecha"
   //      placeholder ={props.usuario.fecha}
       //  onChange = { AgregarNuevoUsuario }
-        
+             onChange = {ObtenerDatos}
         /> </div>
 
 
@@ -144,7 +153,7 @@ const {match:{params}}=props;
         name = "hora"
   //      placeholder = {props.usuario.hora}
     //    onChange = { AgregarNuevoUsuario }
-         
+              onChange = {ObtenerDatos}
         /> 
         </div> 
         <div className = "form-group" >
@@ -156,7 +165,7 @@ const {match:{params}}=props;
       
   //      placeholder = {props.usuario.password}
     //    onChange = { AgregarNuevoUsuario }
-         
+              onChange = {ObtenerDatos}
         /> </div>
 
 
@@ -165,10 +174,11 @@ const {match:{params}}=props;
         <textarea className = "form-control"
         name = "descripcion"
         rows = "3"
-        name={descripcion}
-       
+            onChange = {ObtenerDatos}
+        placeholder={Valor[0].descripcion}
+        
   //      placeholder = {props.usuario.descripcion}
-
+        
          >
         </textarea> </div> <input type = "submit"
         className = "btn btn-primary mt-3 w-100 p-3 text-uppercase font-weight-bold"
