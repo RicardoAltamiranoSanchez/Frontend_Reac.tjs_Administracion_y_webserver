@@ -1,6 +1,7 @@
 import React,{Fragment} from 'react';
 import {Link,withRouter } from 'react-router-dom';
 import Axios from '../../config/axios';
+import Swal from 'sweetalert2';
 let nombreNuevo={
 nombre:"",
 correo:"",
@@ -42,26 +43,50 @@ console.log(e.target.name+" "+e.target.value)
 
 const ActualizarUsuarioPeticion=(e)=>{
       e.preventDefault();
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+ 
+
        const {nombre,correo,rol,descripcion}=nombreNuevo;
       console.log("Desde actualizar usuario");
     try {
 Axios({
     method:'PUT',
     url:`http://localhost:8080/Api/Usuarios/${id}`,
-    data:{nombre,correo,rol,descripcion
+  data:{nombre,correo,rol,descripcion
                
 
 
 } 
+  
+  
 }).then((response)=>{
      //Lo ponemos en verdadero para refrescar la pagina sin un igual por que nos marca error
+     Toast.fire({
+      icon: 'success',
+    title: `${response.data.msg}`
+      })
+
      props.guardarConsulta(true);
      //Redireccionar
      props.history.push(`/Usuario/${id}`);
-    console.log( response.data);
+    console.log( response.data.msg);
     console.log('Actualizacion exitosa');
-}).catch((err)=>{
-      console.log("Hubo un erro en el put del frontend"+err.response);
+}).catch((error)=>{
+ Toast.fire({
+      icon: 'error',
+    title: `${error.response.data.msg}`
+      })
+      console.log("Hubo un erro en el put del frontend de producto"+ error.response.data.msg);
   })     
     } catch (error) {
       console.log(`Error al actualizar el usuario ${error}`);

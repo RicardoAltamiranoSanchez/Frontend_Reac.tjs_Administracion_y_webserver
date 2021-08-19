@@ -104,11 +104,11 @@ const ProductoInfo=(props) => {
                         >
                             Eliminar &times;
                         </button>
-                        <button 
+                 <Link to={`/ActualizarProducto/${_id}`} key={_id}>       <button 
                         type="button"
                         className="text-uppercase py-2 px-5 font-weight-bold btn btn-success col"
                             
-                        >Actualizar</button>
+                        >Actualizar</button></Link>
                     </div>
                 </div>
             </div>

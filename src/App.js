@@ -10,6 +10,7 @@ import ProductoInfo from './components/pagina/Producto';
 import NuevoProducto from './components/pagina/NuevoProducto'
 import ObtenerProducto from './components/producto';
 import ActualizarUsuario from './components/pagina/ActualizarUsuario';
+import ActualizarProducto from './components/pagina/ActualizarProducto'
 import Axios from './config/axios';
 function App() {
     console.log(process.env.REACT_APP_BACKEND_URL);
@@ -146,6 +147,16 @@ function App() {
                               />  }
                                                     
                             />
+                             <Route
+                             exact path='/ActualizarProducto/:id'
+                             component={()=><ActualizarProducto
+                              guardarConsulta= { guardarConsulta }
+                             Productos={ Productos}
+                       />}
+
+       />
+                       
+                       
                          
                              </Switch>
                             </Router>
