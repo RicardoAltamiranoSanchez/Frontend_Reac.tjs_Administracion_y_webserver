@@ -90,6 +90,7 @@ function App() {
                     component = {
                         () => <CategoriasPagina
                         Categorias = { Categorias }
+                        guardarConsulta= { guardarConsulta }
 
                         />} />
                         <Route

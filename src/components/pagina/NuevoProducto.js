@@ -1,5 +1,6 @@
 import React, { Fragment,useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Axios from '../../config/axios';
 
 
@@ -30,21 +31,44 @@ const [NuevoProducto,GuardarProducto]=useState({
    
    const crearProducto=(e) => {
       e.preventDefault();
-        console.log(JSON.stringify(params.id)); 
-       Axios.post(`http://localhost:8080/Api/productos/${params.id}`,NuevoProducto)
-       .then((response) =>{
-         
-          //lo ponemos en verdadero para refrescar la pagina sin un igual por que nos marca error
+      const {nombre,precio,marca,descripcion}=NuevoProducto;
+       console.log(NuevoProducto);
+      Axios({
+      method:"POST",
+       url:`http://localhost:8080/Api/productos/${params.id}`,
+       data:{nombre,precio,marca,descripcion
+        
+         },headers:{ 'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    'x-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGE2OGNlOTcxOGU4YTNiMzRmZmNlNTUiLCJpYXQiOjE2Mjk3NDkwMDcsImV4cCI6MTYyOTc2MzQwN30.ND9-oCQoci5daXBiHcv8G04kYXGUki64eEIHrB9qafE" }
+
+
+}).then((response)=>{
+     Swal.fire({
+                    position: 'top-end',
+                     icon: 'success',
+                     title: 'Producto Registrado con exito',
+                     showConfirmButton: false,
+                     timer: 1500
+               })
+       
+                console.log(NuevoProducto);
+             //lo ponemos en verdadero para refrescar la pagina sin un igual por que nos marca error
           props.guardarConsulta(true);
           // Redireccionar
           props.history.push('/Categorias');
           console.log(response.data);
-       })
-       .catch((err) =>{
- 
-           console.log(err.response)
-       })
- }
+
+} ).catch((error)=>{
+ Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.response.data.errors[0].msg,
+                    })
+            console.log(error.response.data.errors[0].msg);
+       
+})   
+ } 
    return (
 
 

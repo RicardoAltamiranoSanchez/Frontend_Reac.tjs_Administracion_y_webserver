@@ -90,6 +90,7 @@ const eliminarUsuario=(uid) => {
                     <div className="d-flex w-100 justify-content-between mb-4">
                         <h3 className="mb-3">{nombre}</h3>
                         <small className="rol">
+                            <h3>ID</h3>
                            <h3>{uid}</h3> 
                         </small>
                      

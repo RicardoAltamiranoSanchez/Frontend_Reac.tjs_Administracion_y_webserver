@@ -56,7 +56,10 @@ console.log("Desde la actualizacion del nuevo producto");
     url:`http://localhost:8080/Api/productos/${id}`,
      data:{nombre,precio,marca,descripcion
 },  headers:{
-    'x-token':`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGE2OGNlOTcxOGU4YTNiMzRmZmNlNTUiLCJpYXQiOjE2MjkzMzgwNDcsImV4cCI6MTYyOTM1MjQ0N30.5DsgFcJMz3sPPBNCnRG7S_yCfnP5cWKq0HOdES86URg`
+      
+     'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    'x-token':`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGE2OGNlOTcxOGU4YTNiMzRmZmNlNTUiLCJpYXQiOjE2Mjk3NDkwMDcsImV4cCI6MTYyOTc2MzQwN30.ND9-oCQoci5daXBiHcv8G04kYXGUki64eEIHrB9qafE`
 }
 
 }).then((response)=>{
