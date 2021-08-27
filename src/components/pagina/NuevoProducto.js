@@ -40,7 +40,7 @@ const [NuevoProducto,GuardarProducto]=useState({
         
          },headers:{ 'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-    'x-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGE2OGNlOTcxOGU4YTNiMzRmZmNlNTUiLCJpYXQiOjE2Mjk3NDkwMDcsImV4cCI6MTYyOTc2MzQwN30.ND9-oCQoci5daXBiHcv8G04kYXGUki64eEIHrB9qafE" }
+    'x-token':JSON.parse(localStorage.getItem('Autenticacion')) }
 
 
 }).then((response)=>{

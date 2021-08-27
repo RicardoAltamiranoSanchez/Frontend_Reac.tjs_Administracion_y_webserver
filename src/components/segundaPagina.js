@@ -32,7 +32,7 @@ if(valor){
                    headers:{
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'x-token':`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGE2OGNlOTcxOGU4YTNiMzRmZmNlNTUiLCJpYXQiOjE2Mjk3NjY1MzcsImV4cCI6MTYyOTc4MDkzN30.bLtqxE6C3dysv6u_8RgcPk7t6MCjJ6UV7uwlFBK_79I`}})
+                'x-token':JSON.parse(localStorage.getItem('Autenticacion'))}})
 
 .then(response => {
      Swal.fire(` ${response.data.msg}`)
@@ -78,7 +78,7 @@ if (valores) {
         headers:{
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'x-token':`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGE2OGNlOTcxOGU4YTNiMzRmZmNlNTUiLCJpYXQiOjE2Mjk3NjY1MzcsImV4cCI6MTYyOTc4MDkzN30.bLtqxE6C3dysv6u_8RgcPk7t6MCjJ6UV7uwlFBK_79I`}})
+                'x-token':JSON.parse(localStorage.getItem('Autenticacion'))}})
 
     
 .then(response => {
@@ -109,6 +109,7 @@ if (valor) {
  
    console.log(valor);
    console.log(NuevaCategoria);
+   const token=localStorage.getItem('Autenticacion')
   Axios({
         method:"POST",
         url:"http://localhost:8080/Api/categorias",
@@ -116,7 +117,7 @@ if (valor) {
         headers:{
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'x-token':`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGE2OGNlOTcxOGU4YTNiMzRmZmNlNTUiLCJpYXQiOjE2Mjk3NDkwMDcsImV4cCI6MTYyOTc2MzQwN30.ND9-oCQoci5daXBiHcv8G04kYXGUki64eEIHrB9qafE`}})
+                'x-token':`${token}`}})
 .then((response)=>{
      Swal.fire(`Listo Nueva Categoria Creada: ${response.data.msg}`)
      console.log(response);
@@ -128,7 +129,7 @@ if (valor) {
     console.log('Actualizacion exitosa');
 }).catch((error)=>{
        Swal.fire(`Error al momento de crear la nueva Categoria: ${error}`)
-     console.log(error);
+     console.log(error.response.data.msg);
 
 })
 
