@@ -110,6 +110,29 @@ Swal.fire({
 }
   const cerrarAutenticacion=(e)=>{
     e.preventDefault();
+    let timerInterval
+Swal.fire({
+  title: 'Cerrando Sesión....',
+  html: 'Espere un momento <b></b> milisegundos.',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+Swal.fire(
+  'Sesion Cerrada',
+  'Hasta Pronto',
+  
+
+)
+  }
+})
     localStorage.removeItem("Autenticacion");
     localStorage.clear();
    console.log("Removiendo");
