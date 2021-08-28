@@ -59,14 +59,17 @@ const Toast = Swal.mixin({
        const {nombre,correo,rol,descripcion}=nombreNuevo;
       console.log("Desde actualizar usuario");
     try {
+  const token=JSON.parse(localStorage.getItem('Autenticacion'));
 Axios({
     method:'PUT',
     url:`http://localhost:8080/Api/Usuarios/${id}`,
-  data:{nombre,correo,rol,descripcion
-               
-
-
-} 
+  data:{nombre,rol,descripcion 
+} ,  headers:{
+      
+     'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    'x-token':`${token}`
+}
   
   
 }).then((response)=>{
@@ -120,7 +123,7 @@ Axios({
         //Es una funcion de boton de react con onchange y metemos la funcion
   //      onChange = {AgregarNuevoUsuario}
         /> </div>
-         <div className = "from-group" >
+         {/* <div className = "from-group" >
         <label htmlFor = 'correo' > Correo </label> 
         <input type = "email"
         className = "form-control form-control-"
@@ -132,7 +135,7 @@ Axios({
        
     //    onChange = { AgregarNuevoUsuario }
         
-        /> </div>
+        /> </div> */}
 
         <div className = "form-group" >
         <label htmlFor = "propietario" > Rol </label> 

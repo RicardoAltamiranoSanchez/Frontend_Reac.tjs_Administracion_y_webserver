@@ -25,14 +25,16 @@ const CategoriasPagina = ({Categorias,guardarConsulta},props) => {
   inputLabel: 'Escriba el  id  de la Categoria a Eliminar',
   inputPlaceholder: 'Escriba el id '
 })
+
 if(valor){
+    const token=JSON.parse(localStorage.getItem('Autenticacion'));
    Axios({
       method:"DELETE",
      url:`http://localhost:8080/Api/${valor}`,
                    headers:{
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'x-token':JSON.parse(localStorage.getItem('Autenticacion'))}})
+                'x-token':`${token}`}})
 
 .then(response => {
      Swal.fire(` ${response.data.msg}`)
@@ -70,7 +72,7 @@ const { value: valores } = await Swal.fire({
 if (valores) {
     const id=valores[0];
     const resto=valores[1];
-  
+     const token=JSON.parse(localStorage.getItem('Autenticacion'));
   Axios({
      method:'PUT',
      url:`http://localhost:8080/Api/categorias/${id}`,
@@ -78,7 +80,7 @@ if (valores) {
         headers:{
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'x-token':JSON.parse(localStorage.getItem('Autenticacion'))}})
+                'x-token':`${token}`}})
 
     
 .then(response => {
@@ -109,7 +111,10 @@ if (valor) {
  
    console.log(valor);
    console.log(NuevaCategoria);
-   const token=localStorage.getItem('Autenticacion')
+   const token=JSON.parse(localStorage.getItem('Autenticacion'));
+  
+   console.log(token);
+   
   Axios({
         method:"POST",
         url:"http://localhost:8080/Api/categorias",
@@ -128,7 +133,7 @@ if (valor) {
     console.log( response.data.msg);
     console.log('Actualizacion exitosa');
 }).catch((error)=>{
-       Swal.fire(`Error al momento de crear la nueva Categoria: ${error}`)
+       Swal.fire(` ${error.response.data.msg}`)
      console.log(error.response.data.msg);
 
 })

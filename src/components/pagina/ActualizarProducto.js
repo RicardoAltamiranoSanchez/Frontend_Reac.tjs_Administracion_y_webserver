@@ -48,9 +48,10 @@ const ActualizarNuevoProducto=(e)=>{
   }
 })
    const {nombre,precio,marca,descripcion}=NuevoProducto;
-console.log("Desde la actualizacion del nuevo producto");
 
+   
  try{
+     const token=JSON.parse(localStorage.getItem('Autenticacion'));
      Axios({
      method:"PUT",
     url:`http://localhost:8080/Api/productos/${id}`,
@@ -59,7 +60,7 @@ console.log("Desde la actualizacion del nuevo producto");
       
      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-    'x-token':JSON.parse(localStorage.getItem('Autenticacion'))
+    'x-token':`${token}`
 }
 
 }).then((response)=>{
@@ -81,16 +82,10 @@ console.log("Desde la actualizacion del nuevo producto");
     title: `${error.response.data.msg}`
       })
      console.log(`Hubo un error al momento de enviara la peticion de producto en actualizar ${error}`);
-
 })
-     
-
 }catch(error){
     console.log(`Hubo un error desde la peticion de actualizar el producto`);
 }
-
-
-
 }
 
 return(

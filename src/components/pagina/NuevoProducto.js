@@ -32,6 +32,7 @@ const [NuevoProducto,GuardarProducto]=useState({
    const crearProducto=(e) => {
       e.preventDefault();
       const {nombre,precio,marca,descripcion}=NuevoProducto;
+ const token=JSON.parse(localStorage.getItem('Autenticacion'));
        console.log(NuevoProducto);
       Axios({
       method:"POST",
@@ -40,7 +41,7 @@ const [NuevoProducto,GuardarProducto]=useState({
         
          },headers:{ 'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-    'x-token':JSON.parse(localStorage.getItem('Autenticacion')) }
+    'x-token':`${token}` }
 
 
 }).then((response)=>{

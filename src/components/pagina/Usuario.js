@@ -43,10 +43,18 @@ const eliminarUsuario=(uid) => {
         cancelButtonText:'Cancelar'
     }).then((result) => {
         if (result.value) {
-
+         const token=JSON.parse(localStorage.getItem('Autenticacion'));
          
             // Eliminado de la base de datos
-            Axios.delete(`http://localhost:8080/Api/Usuarios/${uid}`)
+            Axios({
+            method:"DELETE",
+            url:`http://localhost:8080/Api/Usuarios/${uid}`,
+            headers:{
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-token':`${token}`
+      }
+})
                 .then(respuesta => {
                        // Alerta de eliminado
             Swal.fire(
