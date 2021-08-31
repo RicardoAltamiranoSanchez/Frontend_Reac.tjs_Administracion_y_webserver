@@ -74,9 +74,9 @@ Swal.fire({
 
 
 
+ localStorage.setItem("Autenticacion",JSON.stringify(response.data.token)); 
 
-
-    localStorage.setItem("Autenticacion",JSON.stringify(response.data.token)); 
+   
 console.log(response.data.usuario.img);
 
 }).catch((error)=>{
@@ -110,6 +110,8 @@ Swal.fire({
 }
   const cerrarAutenticacion=(e)=>{
     e.preventDefault();
+const token=JSON.parse(localStorage.getItem('Autenticacion'));
+if(token){
     let timerInterval
 Swal.fire({
   title: 'Cerrando Sesión....',
@@ -136,7 +138,12 @@ Swal.fire(
     localStorage.removeItem("Autenticacion");
     localStorage.clear();
    console.log("Removiendo");
+}else{
+Swal.fire(
+  'No hay una Sesión Inicializada',
 
+)
+}
 }
      
 return ( 
@@ -175,7 +182,7 @@ return (
      
       <Link to={`/Usuario/${u.uid}`} key={u.uid} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
       <div className="d-flex w-100 justify-content-between mb-3">
-      <h3 className="mb-3">{u.nombre}</h3>
+      <h3 className="mb-1">{u.nombre}</h3>
      
       <small class="fecha-alta">
       <h3>Correo</h3><p>{u.correo}</p>
@@ -186,7 +193,7 @@ return (
       </div>
 
      
-        <img src={u.img}/>
+        <img src={u.img}  />
           
 
 
