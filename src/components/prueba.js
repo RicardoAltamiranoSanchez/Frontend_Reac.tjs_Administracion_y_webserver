@@ -193,7 +193,7 @@ return (
       </div>
 
      
-        <img src={u.img}  />
+        <img src={u.img} width="300" height="266"  />
           
 
 

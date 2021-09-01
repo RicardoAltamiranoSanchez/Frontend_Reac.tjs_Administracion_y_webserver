@@ -1,21 +1,24 @@
 import React ,{Fragment} from 'react';
 import {withRouter,Link} from 'react-router-dom';
 import Swal from 'sweetalert2';
-import Axios from '../../config/axios'
-let NuevoProducto={
-nombre:"",
-precio:0,
-marca:"",
-descripcion:""
+import Axios from '../../config/axios';
 
-}
 let Producto=[]
 const ActualizarProducto=(props)=>{
   console.log("Desde la plantilla de Actualizar"+props);
+
     if(props.Productos.length === 0 ){return null}
 const {match: { params }}= props;
 const {id}=params;
+
 Producto=props.Productos.productos.filter((p)=>p._id===params.id)
+let NuevoProducto={
+nombre:Producto[0].nombre,
+precio:Producto[0].precio,
+marca:Producto[0].marca,
+descripcion:Producto[0].descripcion
+
+}
 console.log(Producto);
    
 const ObtenerDatos= (e)=>{

@@ -23,11 +23,8 @@ const ObtenerProducto=({Productos})=>{
 <h1 className="my-5">{Productos.msg}</h1>
 <div className="container mt-5 py-5">
        <div className="row">
-       <div className="col-12 mb-5 d-flex">
+             <div className="col-12 mb-5 d-flex justify-content-center">
        <Link to={'/'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> Regresar</Link> 
-       </div>
-       <div className="col-12 mb-5 d-flex">
-       <Link to={'/nuevoProducto'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> Nuevo Producto</Link> 
        </div>
        <div className="col-md-8 mx-auto">
       <div className="list-group">
@@ -36,7 +33,7 @@ const ObtenerProducto=({Productos})=>{
       //debemos importar de react-douter-dom link ya que hace nuestra app mas rapida
       <Link to={`/ProductoInfo/${p._id}`} key={p._id} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
       <div className="d-flex w-100 justify-content-between mb-4">
-      <h3 className="mb-3">Imagen</h3>
+      <h3 className="mb-3"> <img src={p.img} width="300" height="266"/></h3>
       <small class="fecha-alta">
       <h3>id producto</h3><p>{p._id}</p>
       <h3>nombre</h3><p>{p.nombre}</p>
@@ -44,7 +41,7 @@ const ObtenerProducto=({Productos})=>{
       
       </small>
       </div>
-         <img src={p.img}/>
+        
       <p className="mb-0">informacion del producto</p>
       <div className="contacto py-3">informacion del producto</div>
       <p>{p.nombre}</p>

@@ -13,7 +13,98 @@ const ProductoInfo=(props) => {
         
         return null;
      }
-    const {nombre,_id,precio,categoria,usuario,img}=props.producto;
+    const {nombre,_id,precio,categoria,usuario,img,descripcion}=props.producto;
+const ProductoImagen= async  (e)=>{
+
+  e.preventDefault();
+const { value: files } = await Swal.fire({
+  title: 'Seleccione una Imagen',
+  input: 'file',
+  inputAttributes: {
+    'accept': 'image/*',
+    'aria-label': 'Seleccione una Imagen'
+  }
+})
+if (files) {
+  const reader = new FileReader()
+var form = new FormData();
+  
+  form.append('archivo',files);
+console.log(form);
+  reader.onload = (e) => {
+    Swal.fire({
+      title: 'Imagen Actualizada',
+      imageUrl: e.target.result,
+      imageAlt: 'Imagen Actualizada'
+    })
+
+  }
+Axios({
+   method:"PUT",
+    url:`http://localhost:8080/Api/uploads/productos/${_id}`,
+    data:form,
+    headers:{
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+}
+   
+
+}).then((response)=>{
+//Cargando Imagen para la Actualizacion
+let timerInterval
+Swal.fire({
+  title: 'Actualizando....',
+  html: 'Espere un momento <b></b> milisegundos.',
+  timer: 5000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval);
+console.log(response.data)
+props.guardarConsulta(true);
+  props.history.push('/Productos');
+ reader.readAsDataURL(files);
+
+console.log(files);
+
+}})
+
+}).catch((error)=>{
+ let timerInterval
+Swal.fire({
+  title: 'Actualizando ....',
+  html: 'Espere un momento <b></b> milisegundos.',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+   Swal.fire({ icon: 'error',
+                title: 'Oops...',
+                text: error.response.data.msg,});
+  }
+})
+console.log(error);
+
+})
+ 
+}
+
+
+}
+
  const eliminarProducto=(id)=>{
      
     Swal.fire({
@@ -77,17 +168,22 @@ const ProductoInfo=(props) => {
 
 <div className="container mt-5 py-5">
     <div className="row">
-        <div className="col-12 mb-5 d-flex justify-content-center">
+        <div className="col-12 mb-4 d-flex justify-content-center">
             <Link to={'/Productos'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold">Volver</Link>
         </div>
 
-        <div className="col-md-8 mx-auto">
+        <div className="col-md-7 mx-auto">
             <div className="list-group">
                 <div className="p-5 list-group-item list-group-item-action flex-column align-items-center">
                     <div className="d-flex w-100 justify-content-between mb-4">
-                        <h3 className="mb-3">{nombre}</h3>
-                        <img src={img}/>
+                     
+                       <p><img src={img} width="300" height="266"/></p> 
+                        
                         <small className="fecha-alta">
+<div className = "btn btn-success text-uppercase py-1 px-9 font-weight-bold   mb-1 "
+  onClick= {ProductoImagen}>Actualizar Imagen</div>
+                           <h3>Nombre</h3>
+                            <p> {nombre}</p>
                            <h3>id producto</h3>
                            <p>{_id}</p>
                            <h3>Categoria</h3>
@@ -98,15 +194,19 @@ const ProductoInfo=(props) => {
                            <p>{usuario.nombre}</p>
                          
                         </small>
+                            
+
                     </div>
+                            
 
                     <p className="mb-0">
                         
                     </p>
                     <div className="fecha-alta">
-                    
+                      
                       <h3>precio</h3><p>{precio}</p>
-                       <h3>Imagen</h3><p></p>
+                    <h3>Descripcion</h3><p>{descripcion}</p>
+                     
                     </div> 
 
                     <div className="d-flex">
