@@ -2,18 +2,13 @@ import React,{Fragment} from 'react';
 import {Link,withRouter } from 'react-router-dom';
 import Axios from '../../config/axios';
 import Swal from 'sweetalert2';
-let nombreNuevo={
-nombre:"",
-correo:"",
-descripcion:"",
-rol:""
 
-}
 let Valor=[]
 const ActualizarUsuario=(props) => {
     console.log("Desde la plantilla de Actualizar"+props);
     if(props.Usuario.length === 0 ){return null}
  let informacion=[]
+
 const {match:{params}}=props; 
   const id=params.id;
 
@@ -22,7 +17,13 @@ const {match:{params}}=props;
    console.log(props);
 
    Valor= props.Usuario.usuarios.filter((u)=>u.uid ===params.id);
-   
+   let nombreNuevo={
+nombre:Valor[0].nombre,
+correo:Valor[0].correo,
+descripcion:Valor[0].descripcion,
+rol:Valor[0].rol,
+
+}
 const ObtenerDatos= (e)=>{
      if(e.target.name==="nombre"){
       nombreNuevo.nombre=e.target.value;
@@ -62,8 +63,8 @@ const Toast = Swal.mixin({
   const token=JSON.parse(localStorage.getItem('Autenticacion'));
 Axios({
     method:'PUT',
-    url:`http://localhost:8080/Api/Usuarios/${id}`,
-  data:{nombre,rol,descripcion 
+    url:`/Api/Usuarios/${id}`,
+  data:{nombre,rol,descripcion,correo
 } ,  headers:{
       
      'Content-Type': 'application/json',
@@ -130,7 +131,7 @@ Axios({
         //Es una funcion de boton de react con onchange y metemos la funcion
   //      onChange = {AgregarNuevoUsuario}
         /> </div>
-         {/* <div className = "from-group" >
+          <div className = "from-group" >
         <label htmlFor = 'correo' > Correo </label> 
         <input type = "email"
         className = "form-control form-control-"
@@ -142,7 +143,7 @@ Axios({
        
     //    onChange = { AgregarNuevoUsuario }
         
-        /> </div> */}
+        /> </div> 
 
         <div className = "form-group" >
         <label htmlFor = "propietario" > Rol </label> 

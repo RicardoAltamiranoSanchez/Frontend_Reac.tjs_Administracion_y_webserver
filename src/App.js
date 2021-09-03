@@ -18,14 +18,14 @@ function App() {
     const [Categorias, guardarCategorias] = useState([]);
     const [Productos, guardarProductos] = useState([]);
     const [consulta, guardarConsulta] = useState(true);
- 
+ console.log(process.env.REACT_APP_BACKEND_URL);
     //useEffect es un funcion que se ejecuta cuando hay cambios en el programa 
     useEffect(() => {
         //Creamos un useState para que se recargue la pagina cada vez que insertamos algo 
         if (consulta) {
             //consultamos la url ya no ponemos el local host por que ya la tenemos en una varible global
             const consultarApi = () => {
-                Axios.get('http://localhost:8080/Api/Usuarios')
+                Axios.get('/Api/Usuarios')
                     .then(respuesta => {
                         guardaUsuarios(respuesta.data);
                         // lo cambiamos en falso para no que no recargue la pagina
@@ -35,7 +35,7 @@ function App() {
             }
             //Consultamos en la ruta categoria de nuestra api
             const ConsultarCategorias = () => {
-                Axios.get('http://localhost:8080/Api/categorias')
+                Axios.get('/Api/categorias')
                     .then((response) => {
                         guardarCategorias(response.data);
 
@@ -44,7 +44,7 @@ function App() {
 
             }
             const ConsultarProductos = () => {
-                Axios.get('http://localhost:8080/Api/productos')
+                Axios.get('/Api/productos')
                     .then((response) =>
 
                         guardarProductos(response.data)

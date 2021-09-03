@@ -30,7 +30,7 @@ if(valor){
     const token=JSON.parse(localStorage.getItem('Autenticacion'));
    Axios({
       method:"DELETE",
-     url:`http://localhost:8080/Api/${valor}`,
+     url:`/Api/${valor}`,
                    headers:{
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
@@ -75,7 +75,7 @@ if (valores) {
      const token=JSON.parse(localStorage.getItem('Autenticacion'));
   Axios({
      method:'PUT',
-     url:`http://localhost:8080/Api/categorias/${id}`,
+     url:`/Api/categorias/${id}`,
       data:{'nombre':`${resto}`},
         headers:{
                 'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ if (valor) {
    
   Axios({
         method:"POST",
-        url:"http://localhost:8080/Api/categorias",
+        url:"/Api/categorias",
         data:{'nombre':`${valor}`},
         headers:{
                 'Content-Type': 'application/json',
@@ -148,24 +148,30 @@ if (valor) {
    
     
     return ( <Fragment>
+<div className="col-10 mb-5 ">
+<Link to={'/'} className="btn btn-success text-uppercase py-1 px-5 font-weight-bold  justify-content-center"> Regresar</Link> 
+      
+</div>
     <h1 className="my-5">{Categorias.msg}</h1>
+
 <div className="container mt-5 py-5">
+ 
 <div className="row">
-
-      <div className="col-12 mb-5 d-flex ">
-
-       <Link to={'/'} className="btn btn-success text-uppercase py-2 px-5 font-weight-bold  justify-content-center"> Regresar</Link> 
-       <input  type="button"  className=" btn btn-success text-uppercase py2 
+<div className="col-3 mb-5 d-flex">   <input  type="button"  className=" btn btn-success text-uppercase py1
 px-5 font-weight-bold" value="Crear Categoria"
          onClick={CrearCategorias} 
-       />
-       <input type="button"  className = "btn btn-info text-uppercase py2 px-5 font-weight-bold " value="Actualizaar Categoria"
-       onClick={ActualizarCategoria}/>
-       <input type="button" className="btn  btn-danger text-uppercase py2 px-5 font-weight-bold " value="Eliminar Categoria"
+       /></div>
+<div className="col-3 mb-5 d-flex">  <input type="button"  className = "btn btn-info text-uppercase py1 px-5 font-weight-bold " value="Actualizaar Categoria"
+       onClick={ActualizarCategoria}/></div>  
+  <div className="col-3 mb-5 d-flex">    
+       <input type="button" className="btn  btn-danger text-uppercase py1 px-5 font-weight-bold " value="Eliminar Categoria"
        onClick={EliminarCategoria}
-   />     
- </div> 
-     
+   /> 
+</div>   
+
+
+ 
+
 
       <div className="col-11 mb-5 ">
       <div className="col-md-8 mx-auto">

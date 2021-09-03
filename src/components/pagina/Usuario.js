@@ -55,7 +55,7 @@ console.log(form);
   }
 Axios({
    method:"PUT",
-    url:`http://localhost:8080/Api/uploads/usuarios/${uid}`,
+    url:`/Api/uploads/usuarios/${uid}`,
     data:form,
     headers:{
       'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const eliminarUsuario=(uid) => {
             // Eliminado de la base de datos
             Axios({
             method:"DELETE",
-            url:`http://localhost:8080/Api/Usuarios/${uid}`,
+            url:`/Api/Usuarios/${uid}`,
             headers:{
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',

@@ -57,7 +57,7 @@ const ActualizarNuevoProducto=(e)=>{
      const token=JSON.parse(localStorage.getItem('Autenticacion'));
      Axios({
      method:"PUT",
-    url:`http://localhost:8080/Api/productos/${id}`,
+    url:`/Api/productos/${id}`,
      data:{nombre,precio,marca,descripcion
 },  headers:{
       

@@ -36,7 +36,7 @@ const [NuevoProducto,GuardarProducto]=useState({
        console.log(NuevoProducto);
       Axios({
       method:"POST",
-       url:`http://localhost:8080/Api/productos/${params.id}`,
+       url:`/Api/productos/${params.id}`,
        data:{nombre,precio,marca,descripcion
         
          },headers:{ 'Content-Type': 'application/json',

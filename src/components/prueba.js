@@ -40,7 +40,7 @@ if (Autenticando) {
     
    Axios({
     method:"POST",
-    url:`http://localhost:8080/Api/authentication/login`,
+    url:`/Api/authentication/login`,
     data:{correo:`${correo}`,password:`${password}`},
 
 

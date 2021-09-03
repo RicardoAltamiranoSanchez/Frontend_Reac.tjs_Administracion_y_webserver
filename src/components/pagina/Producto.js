@@ -41,7 +41,7 @@ console.log(form);
   }
 Axios({
    method:"PUT",
-    url:`http://localhost:8080/Api/uploads/productos/${_id}`,
+    url:`/Api/uploads/productos/${_id}`,
     data:form,
     headers:{
       'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ console.log(error);
             // Eliminado de la base de datos
             Axios({
             method:'DELETE',
-            url:`http://localhost:8080/Api/productos/${id}`,
+            url:`/Api/productos/${id}`,
             headers:{
  
      'Content-Type': 'application/json',

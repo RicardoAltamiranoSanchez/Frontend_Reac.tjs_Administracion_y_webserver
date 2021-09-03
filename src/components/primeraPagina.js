@@ -35,7 +35,7 @@ const PrimeraPagina = (props) => {
          
    
        
-        Axios.post('http://localhost:8080/Api/Usuarios', NuevoUsuario)
+        Axios.post('/Api/Usuarios', NuevoUsuario)
             .then(response => {
                 
                
