@@ -66,10 +66,10 @@ Axios({
     url:`/Api/Usuarios/${id}`,
   data:{nombre,rol,descripcion,correo
 } ,  headers:{
-      
-     'Content-Type': 'application/json',
+       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-    'x-token':`${token}`
+      'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept ",
+       'x-token':`${token}`
 }
   
   

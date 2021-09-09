@@ -32,8 +32,9 @@ if(valor){
       method:"DELETE",
      url:`/Api/${valor}`,
                    headers:{
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+                 'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept ",
                 'x-token':`${token}`}})
 
 .then(response => {
@@ -79,7 +80,8 @@ if (valores) {
       data:{'nombre':`${resto}`},
         headers:{
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept ",
                 'x-token':`${token}`}})
 
     
@@ -120,8 +122,9 @@ if (valor) {
         url:"/Api/categorias",
         data:{'nombre':`${valor}`},
         headers:{
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept ",
                 'x-token':`${token}`}})
 .then((response)=>{
      Swal.fire(`Listo Nueva Categoria Creada: ${response.data.msg}`)
@@ -181,11 +184,11 @@ px-5 font-weight-bold" value="Crear Categoria"
         {Categorias.categoria.map((c)=>(
       //En react no se utiliza las etiquetas se utiliza otra cosa <a></a>  key es para tener un identificador unico utilizamos el iud de usuarios para eso       
       //debemos importar de react-douter-dom link ya que hace nuestra app mas rapida
-      <Link to="/" key={c._id} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
+      <Link  key={c._id} className ="p-5 list-group-item list-group-item-action flex-column align-items-start"> 
       <div className="d-flex w-100 justify-content-between mb-4">
       <h3 className="mb-3">{c.nombre}</h3>
       <small class="fecha-alta">
-      <h3>Identificador ID</h3><p>{c._id}</p>
+      <h3>Identificador ID</h3><p text-lowercase>{c._id}</p>
       <h3>Creado por </h3><p>{c.usuario}</p>
     
       </small>

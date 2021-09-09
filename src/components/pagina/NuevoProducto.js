@@ -39,8 +39,9 @@ const [NuevoProducto,GuardarProducto]=useState({
        url:`/Api/productos/${params.id}`,
        data:{nombre,precio,marca,descripcion
         
-         },headers:{ 'Content-Type': 'application/json',
+         },headers:{  'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept ",
     'x-token':`${token}` }
 
 
